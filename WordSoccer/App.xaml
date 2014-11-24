@@ -1,0 +1,16 @@
+﻿<Application
+    x:Class="WordSoccer.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WordSoccer">
+
+	<Application.Resources>
+		<Style x:Key="page" TargetType="Page">
+			<Setter Property="Background">
+				<Setter.Value>
+					<ImageBrush ImageSource="/Assets/game_background.png"/>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Application.Resources>
+</Application>
