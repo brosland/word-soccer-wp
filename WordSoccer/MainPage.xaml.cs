@@ -1,5 +1,6 @@
 ﻿using Windows.Graphics.Display;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -14,9 +15,7 @@ namespace WordSoccer
 			this.NavigationCacheMode = NavigationCacheMode.Required;
 
 			DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
-			StatusBar sb = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
-
-			sb.HideAsync();
+			StatusBar.GetForCurrentView().HideAsync();
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -30,5 +29,9 @@ namespace WordSoccer
 			// this event is handled for you.
 		}
 
+		private void OnClickPlayGameButton(object sender, RoutedEventArgs e)
+		{
+			Frame.Navigate(typeof(GamePage));
+		}
 	}
 }

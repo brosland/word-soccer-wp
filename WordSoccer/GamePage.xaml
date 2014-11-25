@@ -1,0 +1,168 @@
+﻿<Page
+	x:Class="WordSoccer.GamePage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:WordSoccer"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	Style="{StaticResource PageStyle}">
+
+	<StackPanel>
+
+		<Grid
+			Style="{StaticResource ResourceKey=HeaderStyle}"
+			x:Name="HeaderStackPanel">
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<!-- Player A name -->
+				<ColumnDefinition Width="100"/>
+				<!-- Player A score -->
+				<ColumnDefinition Width="Auto"/>
+				<!-- Player A cards -->
+				<ColumnDefinition Width="*"/>
+				<!-- Timer -->
+				<ColumnDefinition Width="Auto"/>
+				<!-- Player B cards -->
+				<ColumnDefinition Width="*"/>
+				<!-- Player B score -->
+				<ColumnDefinition Width="Auto"/>
+				<!-- Player B name -->
+				<ColumnDefinition Width="100"/>
+			</Grid.ColumnDefinitions>
+			
+			<!-- Player A -->
+			<Border
+				Grid.Column="0"
+				Style="{StaticResource PlayerANameWrapperStyle}">
+
+				<TextBlock
+					Style="{StaticResource PlayerNameStyle}"
+					x:Name="PlayerANameTextBlock"
+					Text="Player A"/>
+
+			</Border>
+
+			<Border
+				Grid.Column="1"
+				Style="{StaticResource PlayerScoreWrapperStyle}">
+
+				<TextBlock
+					Style="{StaticResource PlayerScoreStyle}"
+					x:Name="PlayerAScoreTextBlock"
+					Text="0"/>
+
+			</Border>
+
+			<StackPanel
+				Grid.Column="2"
+				Orientation="Horizontal"
+				Margin="5 0">
+
+				<Border
+					Style="{StaticResource RedCardWrapperStyle}">
+
+					<TextBlock
+						Style="{StaticResource CardStyle}"
+						x:Name="PlayerARedCardTextBlock"/>
+
+				</Border>
+
+				<Border
+					Style="{StaticResource YellowCardWrapperStyle}">
+
+					<TextBlock
+						Style="{StaticResource CardStyle}"
+						x:Name="PlayerAYellowCardTextBlock"/>
+
+				</Border>
+			</StackPanel>
+			
+
+			<!-- Timer -->
+			<StackPanel
+				Grid.Column="3"
+				Orientation="Horizontal"
+				HorizontalAlignment="Center">
+
+				<Border
+					Style="{StaticResource RoundWrapperStyle}">
+	
+					<TextBlock
+						Style="{StaticResource RoundStyle}"
+						Text="1."/>
+				</Border>
+
+				<Border
+					Style="{StaticResource TimeWrapperStyle}">
+
+					<TextBlock
+						Style="{StaticResource TimeStyle}"
+						Text="0:00"/>
+
+				</Border>
+				
+			</StackPanel>
+	
+			<!-- Player B -->
+			<StackPanel
+				Grid.Column="4"
+				Orientation="Horizontal"
+				HorizontalAlignment="Right"
+				Margin="5 0">
+
+				<Border
+					Style="{StaticResource RedCardWrapperStyle}">
+
+					<TextBlock
+						Style="{StaticResource CardStyle}"
+						x:Name="PlayerBRedCardTextBlock"/>
+
+				</Border>
+
+				<Border
+					Style="{StaticResource YellowCardWrapperStyle}">
+
+					<TextBlock
+						Style="{StaticResource CardStyle}"
+						x:Name="PlayerBYellowCardTextBlock"/>
+
+				</Border>
+			</StackPanel>
+
+			<Border
+				Grid.Column="5"
+				Style="{StaticResource PlayerScoreWrapperStyle}">
+
+				<TextBlock
+					Style="{StaticResource PlayerScoreStyle}"
+					x:Name="PlayerBScoreTextBlock"
+					Text="0"/>
+
+			</Border>
+
+			<Border
+				Grid.Column="6"
+				Style="{StaticResource PlayerBNameWrapperStyle}">
+
+				<TextBlock
+					Style="{StaticResource PlayerNameStyle}"
+					x:Name="PlayerBNameTextBlock"
+					Text="Player B"/>
+
+			</Border>
+
+		</Grid>
+
+		<Grid
+			x:Name="ContentGrid"/>
+
+		<Grid
+			x:Name="FooterGrid"/>
+
+	</StackPanel>
+
+</Page>
