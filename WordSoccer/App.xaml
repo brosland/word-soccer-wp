@@ -1,142 +1,23 @@
 ﻿<Application
-    x:Class="WordSoccer.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WordSoccer">
+	x:Class="WordSoccer.App">
 
 	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Assets/styles/button.xaml"/>
+				<ResourceDictionary Source="/Assets/styles/main_page.xaml"/>
+				<ResourceDictionary Source="/Assets/styles/game_page.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
 
-		<Style x:Key="PageStyle" TargetType="Page">
-			<Setter Property="Background">
-				<Setter.Value>
-					<ImageBrush ImageSource="/Assets/game_background.png"/>
-				</Setter.Value>
-			</Setter>
-		</Style>
-
-
-
-		<!-- ************************* Main page ************************** -->
-
-		<Style x:Key="MainMenuStyle" TargetType="Grid">
-			<Setter Property="Background" Value="#99ffffff"/>
-		</Style>
-
-		<Style x:Key="MainMenuWrapperStyle" TargetType="StackPanel">
-			<Setter Property="Margin" Value="10"/>
-		</Style>
-
-		<Style x:Key="MainMenuButtonStyle" TargetType="Button">
-			<Setter Property="Background" Value="#99333333"/>
-			<Setter Property="FontWeight" Value="Normal"/>
-			<Setter Property="FontSize" Value="18"/>
-			<Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-			<Setter Property="BorderThickness" Value="0"/>
-			<Setter Property="Margin" Value="0 0 0 -10"></Setter>
-			<Setter Property="Padding" Value="0"/>
-			<Setter Property="Foreground" Value="#ffffff"/>
-		</Style>
-
-
-
-		<!-- ************************* Game page ************************** -->
-
-		<Style x:Key="HeaderStyle" TargetType="Grid">
-			<Setter Property="Background" Value="#99ffffff"/>
-		</Style>
-
-		<Style x:Key="HeaderBaseTextBlockStyle" TargetType="TextBlock">
-			<Setter Property="FontSize" Value="14"/>
-			<Setter Property="VerticalAlignment" Value="Center"/>
-			<Setter Property="TextAlignment" Value="Center"/>
-			<Setter Property="FontWeight" Value="Bold"/>
-			<Setter Property="Padding" Value="5"/>
-		</Style>
-
-		<!-- Player name -->
-		<Style x:Key="PlayerNameStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
-			<Setter Property="Foreground" Value="#ffffff"/>
-		</Style>
-
-		<Style x:Key="PlayerANameWrapperStyle" TargetType="Border">
-			<Setter Property="Background" Value="#00aaff"/>
-			<Setter Property="HorizontalAlignment" Value="Left"/>
-			<Setter Property="Width" Value="100"/>
-		</Style>
-
-		<Style x:Key="PlayerBNameWrapperStyle" TargetType="Border">
-			<Setter Property="Background" Value="#ff0000"/>
-			<Setter Property="HorizontalAlignment" Value="Right"/>
-			<Setter Property="Width" Value="100"/>
-		</Style>
-
-		<!-- Player score -->
-		<Style x:Key="PlayerScoreWrapperStyle" TargetType="Border">
-			<Setter Property="Background" Value="#ffffff"/>
-			<Setter Property="HorizontalAlignment" Value="Left"/>
-		</Style>
-
-		<Style x:Key="PlayerScoreStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
-			<Setter Property="Foreground" Value="#333333"/>
-		</Style>
-
-		<!-- Cards -->
-		<Style x:Key="CardWrapperStyle" TargetType="Border">
-			<Setter Property="Margin" Value="2 0"/>
-			<Setter Property="Padding" Value="4"/>
-			<Setter Property="VerticalAlignment" Value="Center"/>
-			<Setter Property="Visibility" Value="Collapsed"/>
-		</Style>
-
-		<Style x:Key="RedCardWrapperStyle" TargetType="Border" BasedOn="{StaticResource CardWrapperStyle}">
-			<Setter Property="Background">
-				<Setter.Value>
-					<ImageBrush ImageSource="/Assets/red_card.png"/>
-				</Setter.Value>
-			</Setter>
-		</Style>
-
-		<Style x:Key="YellowCardWrapperStyle" TargetType="Border" BasedOn="{StaticResource CardWrapperStyle}">
-			<Setter Property="Background">
-				<Setter.Value>
-					<ImageBrush ImageSource="/Assets/yellow_card.png"/>
-				</Setter.Value>
-			</Setter>
-		</Style>
-
-		<Style x:Key="CardStyle" TargetType="TextBlock">
-			<Setter Property="Foreground" Value="#ffffff"/>
-			<Setter Property="FontSize" Value="14"/>
-			<Setter Property="FontWeight" Value="Bold"/>
-			<Setter Property="TextAlignment" Value="Center"/>
-			<Setter Property="Width" Value="9"/>
-		</Style>
-
-		<!-- Round and time -->
-		<Style x:Key="RoundWrapperStyle" TargetType="Border">
-			<Setter Property="Background" Value="#555555"/>
-		</Style>
-
-		<Style x:Key="RoundStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
-			<Setter Property="FontSize" Value="18"/>
-			<Setter Property="Foreground" Value="#ffffff"/>
-			<Setter Property="VerticalAlignment" Value="Bottom"/>
-		</Style>
-
-		<Style x:Key="TimeWrapperStyle" TargetType="Border">
-			<Setter Property="Background" Value="#ffffff"/>
-		</Style>
-
-		<Style x:Key="TimeStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
-			<Setter Property="FontSize" Value="18"/>
-			<Setter Property="Foreground" Value="#555555"/>
-			<Setter Property="VerticalAlignment" Value="Bottom"/>
-		</Style>
-
-		<Style x:Key="CriticalTimeStyle" TargetType="TextBlock" BasedOn="{StaticResource TimeStyle}">
-			<Setter Property="Foreground" Value="#ff0000"/>
-		</Style>
-
+			<Style x:Key="PageStyle" TargetType="Page">
+				<Setter Property="Background">
+					<Setter.Value>
+						<ImageBrush ImageSource="/Assets/game_background.png"/>
+					</Setter.Value>
+				</Setter>
+			</Style>
+		</ResourceDictionary>
 	</Application.Resources>
-
 </Application>

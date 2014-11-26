@@ -8,15 +8,19 @@
 	mc:Ignorable="d"
 	Style="{StaticResource PageStyle}">
 
-	<StackPanel>
+	<Grid>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
 
 		<Grid
+			Grid.Row="0"
 			Style="{StaticResource ResourceKey=HeaderStyle}"
 			x:Name="HeaderStackPanel">
 
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<!-- Player A name -->
 				<ColumnDefinition Width="100"/>
@@ -158,11 +162,36 @@
 		</Grid>
 
 		<Grid
+			Grid.Row="1"
 			x:Name="ContentGrid"/>
 
-		<Grid
-			x:Name="FooterGrid"/>
+		<Border
+			Style="{StaticResource FooterStyle}"
+			Grid.Row="2">
 
-	</StackPanel>
+			<Grid
+				x:Name="FooterGrid">
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+
+				<TextBlock
+					Grid.Column="1"
+					Style="{StaticResource StatusMessageStyle}"
+					x:Name="StatusMessage"
+					Text="Status"/>
+
+				<Button
+					Grid.Column="2"
+					Style="{StaticResource ButtonStyle}"
+					HorizontalAlignment="Right"
+					Content="Continue"/>
+			</Grid>
+		</Border>
+
+	</Grid>
 
 </Page>
