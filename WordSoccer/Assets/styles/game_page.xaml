@@ -3,11 +3,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 	<!-- *** Header *** -->
-	<Style x:Key="HeaderStyle" TargetType="Grid">
+	<Style
+		x:Key="HeaderStyle"
+		TargetType="Grid">
+
 		<Setter Property="Background" Value="#99ffffff"/>
 	</Style>
 
-	<Style x:Key="HeaderBaseTextBlockStyle" TargetType="TextBlock">
+	<Style
+		x:Key="HeaderBaseTextBlockStyle"
+		TargetType="TextBlock">
+
 		<Setter Property="FontSize" Value="14"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
 		<Setter Property="TextAlignment" Value="Center"/>
@@ -16,41 +22,65 @@
 	</Style>
 
 	<!-- Player name -->
-	<Style x:Key="PlayerNameStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
+	<Style
+		x:Key="PlayerNameStyle"
+		TargetType="TextBlock"
+		BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
+
 		<Setter Property="Foreground" Value="#ffffff"/>
 	</Style>
 
-	<Style x:Key="PlayerANameWrapperStyle" TargetType="Border">
+	<Style
+		x:Key="PlayerANameWrapperStyle"
+		TargetType="Border">
+
 		<Setter Property="Background" Value="#00aaff"/>
 		<Setter Property="HorizontalAlignment" Value="Left"/>
 		<Setter Property="Width" Value="100"/>
 	</Style>
 
-	<Style x:Key="PlayerBNameWrapperStyle" TargetType="Border">
+	<Style
+		x:Key="PlayerBNameWrapperStyle"
+		TargetType="Border">
+
 		<Setter Property="Background" Value="#ff0000"/>
 		<Setter Property="HorizontalAlignment" Value="Right"/>
 		<Setter Property="Width" Value="100"/>
 	</Style>
 
 	<!-- Player score -->
-	<Style x:Key="PlayerScoreWrapperStyle" TargetType="Border">
+	<Style
+		x:Key="PlayerScoreWrapperStyle"
+		TargetType="Border">
+
 		<Setter Property="Background" Value="#ffffff"/>
 		<Setter Property="HorizontalAlignment" Value="Left"/>
 	</Style>
 
-	<Style x:Key="PlayerScoreStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
+	<Style
+		x:Key="PlayerScoreStyle"
+		TargetType="TextBlock"
+		BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
+
 		<Setter Property="Foreground" Value="#333333"/>
 	</Style>
 
 	<!-- Cards -->
-	<Style x:Key="CardWrapperStyle" TargetType="Border">
+	<Style
+		x:Key="CardWrapperStyle"
+		TargetType="Border">
+
 		<Setter Property="Margin" Value="2 0"/>
 		<Setter Property="Padding" Value="4"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
 		<Setter Property="Visibility" Value="Collapsed"/>
 	</Style>
 
-	<Style x:Key="RedCardWrapperStyle" TargetType="Border" BasedOn="{StaticResource CardWrapperStyle}">
+	<Style
+		x:Key="RedCardWrapperStyle"
+		TargetType="Border"
+		BasedOn="{StaticResource CardWrapperStyle}">
+
 		<Setter Property="Background">
 			<Setter.Value>
 				<ImageBrush ImageSource="/Assets/red_card.png"/>
@@ -58,7 +88,11 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="YellowCardWrapperStyle" TargetType="Border" BasedOn="{StaticResource CardWrapperStyle}">
+	<Style
+		x:Key="YellowCardWrapperStyle"
+		TargetType="Border"
+		BasedOn="{StaticResource CardWrapperStyle}">
+
 		<Setter Property="Background">
 			<Setter.Value>
 				<ImageBrush ImageSource="/Assets/yellow_card.png"/>
@@ -66,7 +100,10 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="CardStyle" TargetType="TextBlock">
+	<Style
+		x:Key="CardStyle"
+		TargetType="TextBlock">
+
 		<Setter Property="Foreground" Value="#ffffff"/>
 		<Setter Property="FontSize" Value="14"/>
 		<Setter Property="FontWeight" Value="Bold"/>
@@ -75,37 +112,61 @@
 	</Style>
 
 	<!-- Round and time -->
-	<Style x:Key="RoundWrapperStyle" TargetType="Border">
+	<Style
+		x:Key="RoundWrapperStyle"
+		TargetType="Border">
+
 		<Setter Property="Background" Value="#555555"/>
 	</Style>
 
-	<Style x:Key="RoundStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
+	<Style
+		x:Key="RoundStyle"
+		TargetType="TextBlock"
+		BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
+
 		<Setter Property="FontSize" Value="18"/>
 		<Setter Property="Foreground" Value="#ffffff"/>
 		<Setter Property="VerticalAlignment" Value="Bottom"/>
 	</Style>
 
-	<Style x:Key="TimeWrapperStyle" TargetType="Border">
+	<Style
+		x:Key="TimeWrapperStyle"
+		TargetType="Border">
+
 		<Setter Property="Background" Value="#ffffff"/>
 	</Style>
 
-	<Style x:Key="TimeStyle" TargetType="TextBlock" BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
+	<Style
+		x:Key="TimeStyle"
+		TargetType="TextBlock"
+		BasedOn="{StaticResource HeaderBaseTextBlockStyle}">
+
 		<Setter Property="FontSize" Value="18"/>
 		<Setter Property="Foreground" Value="#555555"/>
 		<Setter Property="VerticalAlignment" Value="Bottom"/>
 	</Style>
 
-	<Style x:Key="CriticalTimeStyle" TargetType="TextBlock" BasedOn="{StaticResource TimeStyle}">
+	<Style
+		x:Key="CriticalTimeStyle"
+		TargetType="TextBlock"
+		BasedOn="{StaticResource TimeStyle}">
+
 		<Setter Property="Foreground" Value="#ff0000"/>
 	</Style>
 
 	<!-- *** Footer *** -->
-	<Style x:Key="FooterStyle" TargetType="Border">
+	<Style
+		x:Key="FooterStyle"
+		TargetType="Border">
+
 		<Setter Property="Background" Value="#99ffffff"/>
 		<Setter Property="Padding" Value="5"></Setter>
 	</Style>
 
-	<Style x:Key="StatusMessageStyle" TargetType="TextBlock">
+	<Style
+		x:Key="StatusMessageStyle"
+		TargetType="TextBlock">
+
 		<Setter Property="FontSize" Value="20"/>
 		<Setter Property="FontWeight" Value="SemiBold"/>
 		<Setter Property="Foreground" Value="#555555"/>

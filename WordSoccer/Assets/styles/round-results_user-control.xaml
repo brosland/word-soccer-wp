@@ -1,0 +1,98 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style
+		x:Key="ResultsTable.CellStyle"
+		TargetType="Border">
+
+		<Setter Property="Margin" Value="0 5 0 0"/>
+		<Setter Property="Padding" Value="5"/>
+	</Style>
+
+	<Style
+		x:Key="ResultsTable.CellTextStyle"
+		TargetType="TextBlock">
+
+		<Setter Property="Foreground" Value="#333333"/>
+		<Setter Property="FontSize" Value="15"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<!-- Header cell -->
+	<Style
+		x:Key="ResultsTable.HeaderCellStyle"
+		TargetType="Border"
+		BasedOn="{StaticResource ResultsTable.CellStyle}">
+
+		<Setter Property="Background" Value="#ccffffff"/>
+		<Setter Property="Margin" Value="0"/>
+	</Style>
+
+	<!-- Title cell -->
+	<Style
+		x:Key="ResultsTable.TitleCellStyle"
+		TargetType="Border"
+		BasedOn="{StaticResource ResultsTable.CellStyle}">
+
+		<Setter Property="Background" Value="#ccffffff"/>
+		<Setter Property="MinWidth" Value="200"/>
+	</Style>
+
+	<!-- Value cell -->
+	<Style
+		x:Key="ResultsTable.ValueCellStyle"
+		TargetType="Border"
+		BasedOn="{StaticResource ResultsTable.CellStyle}">
+
+		<Setter Property="Background" Value="#ffffff"/>
+		<Setter Property="Width" Value="60"/>
+	</Style>
+
+	<Style
+		x:Key="ResultsTable.PlayerA.HighlightedValueCellStyle"
+		TargetType="Border"
+		BasedOn="{StaticResource ResultsTable.CellStyle}">
+
+		<Setter Property="Background" Value="#00aaff"/>
+	</Style>
+
+	<Style
+		x:Key="ResultsTable.PlayerB.HighlightedValueCellStyle"
+		TargetType="Border"
+		BasedOn="{StaticResource ResultsTable.CellStyle}">
+
+		<Setter Property="Background" Value="#ff0000"/>
+	</Style>
+
+	<Style
+		x:Key="ResultsTable.HighlightedValueCellTextStyle"
+		TargetType="TextBlock"
+		BasedOn="{StaticResource ResultsTable.CellTextStyle}">
+
+		<Setter Property="Foreground" Value="#ffffff"/>
+	</Style>
+
+	<!-- Card cell -->
+	<Style
+		x:Key="ResultsTable.YellowCardCellStyle"
+		TargetType="Border"
+		BasedOn="{StaticResource YellowCardWrapperStyle}">
+
+		<Setter Property="Width" Value="15"/>
+		<Setter Property="Height" Value="20"/>
+		<Setter Property="Margin" Value="5 5 5 0"/>
+	</Style>
+
+	<Style
+		x:Key="ResultsTable.RedCardCellStyle"
+		TargetType="Border"
+		BasedOn="{StaticResource RedCardWrapperStyle}">
+
+		<Setter Property="Width" Value="15"/>
+		<Setter Property="Height" Value="20"/>
+		<Setter Property="Margin" Value="5 5 5 0"/>
+	</Style>
+
+</ResourceDictionary>

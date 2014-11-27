@@ -1,0 +1,180 @@
+﻿<UserControl
+    x:Class="WordSoccer.UserControls.RoundResultsUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WordSoccer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+	<Grid
+		Style="{StaticResource MainMenuStyle}"
+		HorizontalAlignment="Center"
+		VerticalAlignment="Center">
+
+		<StackPanel
+			Style="{StaticResource MainMenuWrapperStyle}">
+
+			<Border
+				Style="{StaticResource ResultsTable.HeaderCellStyle}">
+
+				<TextBlock
+					Style="{StaticResource ResultsTable.CellTextStyle}"
+					x:Name="HeaderTextBlock"
+					Text="Round 1/ 6"/>
+			</Border>
+
+			<Grid>
+
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+
+				<!-- Total letters -->
+
+				<Border
+					Grid.Row="0"
+					Grid.Column="1"
+					Style="{StaticResource ResultsTable.ValueCellStyle}">
+
+					<TextBlock
+						Style="{StaticResource ResultsTable.CellTextStyle}"
+						x:Name="PlayerATotalLettersTextBock"
+						Text="0"/>
+				</Border>
+
+				<Border
+					Grid.Row="0"
+					Grid.Column="2"
+					Style="{StaticResource ResultsTable.TitleCellStyle}">
+
+					<TextBlock
+						Style="{StaticResource ResultsTable.CellTextStyle}"
+						Text="Total letters"/>
+				</Border>
+
+				<Border
+					Grid.Row="0"
+					Grid.Column="3"
+					Style="{StaticResource ResultsTable.ValueCellStyle}">
+
+					<TextBlock
+						Style="{StaticResource ResultsTable.CellTextStyle}"
+						x:Name="PlayerBTotalLettersTextBock"
+						Text="0"/>
+				</Border>
+
+				<!-- Longest valid word -->
+
+				<Border
+					Grid.Row="1"
+					Grid.Column="0"
+					Style="{StaticResource ResultsTable.YellowCardCellStyle}"
+					x:Name="PlayerAYellowCardTextBlock"
+					Visibility="Visible"/>
+
+				<Border
+					Grid.Row="1"
+					Grid.Column="1"
+					Style="{StaticResource ResultsTable.ValueCellStyle}">
+
+					<TextBlock
+						Style="{StaticResource ResultsTable.CellTextStyle}"
+						x:Name="PlayerALongestValidWordTextBlock"
+						Text="0"/>
+				</Border>
+
+				<Border
+					Grid.Row="1"
+					Grid.Column="2"
+					Style="{StaticResource ResultsTable.TitleCellStyle}">
+
+					<TextBlock
+						Style="{StaticResource ResultsTable.CellTextStyle}"
+						Text="Longest valid word"/>
+				</Border>
+
+				<Border
+					Grid.Row="1"
+					Grid.Column="3"
+					Style="{StaticResource ResultsTable.ValueCellStyle}">
+
+					<TextBlock
+						Style="{StaticResource ResultsTable.CellTextStyle}"
+						x:Name="PlayerBLongestValidWordTextView"
+						Text="0"/>
+				</Border>
+
+				<Border
+					Grid.Row="1"
+					Grid.Column="4"
+					Style="{StaticResource ResultsTable.YellowCardCellStyle}"
+					x:Name="PlayerBYellowCardTextBlock"
+					Visibility="Visible"/>
+
+
+				<!-- Usage of letters -->
+
+				<Border
+					Grid.Row="2"
+					Grid.Column="0"
+					Style="{StaticResource ResultsTable.RedCardCellStyle}"
+					x:Name="PlayerARedCardTextBlock"
+					Visibility="Visible"/>
+
+				<Border
+					Grid.Row="2"
+					Grid.Column="1"
+					Style="{StaticResource ResultsTable.ValueCellStyle}">
+
+					<TextBlock
+						Style="{StaticResource ResultsTable.CellTextStyle}"
+						x:Name="PlayerAUsageOfLettersTextBlock"
+						Text="0 %"/>
+				</Border>
+
+				<Border
+					Grid.Row="2"
+					Grid.Column="2"
+					Style="{StaticResource ResultsTable.TitleCellStyle}">
+
+					<TextBlock
+						Style="{StaticResource ResultsTable.CellTextStyle}"
+						Text="Usage of letters"/>
+				</Border>
+
+				<Border
+					Grid.Row="2"
+					Grid.Column="3"
+					Style="{StaticResource ResultsTable.ValueCellStyle}">
+
+					<TextBlock
+						Style="{StaticResource ResultsTable.CellTextStyle}"
+						x:Name="PlayerBUsageOfLettersTextBlock"
+						Text="0 %"/>
+				</Border>
+
+				<Border
+					Grid.Row="2"
+					Grid.Column="4"
+					Style="{StaticResource ResultsTable.RedCardCellStyle}"
+					x:Name="PlayerBRedCardTextBlock"
+					Visibility="Visible"/>
+
+			</Grid>
+
+		</StackPanel>
+
+	</Grid>
+
+</UserControl>

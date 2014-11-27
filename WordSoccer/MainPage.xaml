@@ -13,9 +13,7 @@
 		VerticalAlignment="Center">
 
 		<StackPanel
-			Style="{StaticResource MainMenuWrapperStyle}"
-			HorizontalAlignment="Center"
-			VerticalAlignment="Center">
+			Style="{StaticResource MainMenuWrapperStyle}">
 
 			<TextBlock
 				Foreground="#555555"

@@ -4,20 +4,31 @@
 	x:Class="WordSoccer.App">
 
 	<Application.Resources>
+
 		<ResourceDictionary>
+
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/Assets/styles/button.xaml"/>
 				<ResourceDictionary Source="/Assets/styles/main_page.xaml"/>
 				<ResourceDictionary Source="/Assets/styles/game_page.xaml"/>
+				<ResourceDictionary Source="/Assets/styles/round_user-control.xaml"/>
+				<ResourceDictionary Source="/Assets/styles/round-results_user-control.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 
-			<Style x:Key="PageStyle" TargetType="Page">
+			<Style
+				x:Key="PageStyle"
+				TargetType="Page">
+
 				<Setter Property="Background">
 					<Setter.Value>
 						<ImageBrush ImageSource="/Assets/game_background.png"/>
 					</Setter.Value>
 				</Setter>
+
 			</Style>
+
 		</ResourceDictionary>
+
 	</Application.Resources>
+
 </Application>
