@@ -33,5 +33,15 @@ namespace WordSoccer
 		{
 			Frame.Navigate(typeof(GamePage));
 		}
+
+		private void OnClickSettingsButton(object sender, RoutedEventArgs e)
+		{
+			Frame.Navigate(typeof(SettingsPage));
+		}
+
+		private void OnClickExitButton(object sender, RoutedEventArgs e)
+		{
+			Application.Current.Exit();
+		}
 	}
 }

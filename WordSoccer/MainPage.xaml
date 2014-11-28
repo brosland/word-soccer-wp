@@ -31,11 +31,13 @@
 
 			<Button
 				Style="{StaticResource MainMenuButtonStyle}"
-				Content="Settings"/>
+				Content="Settings"
+				Click="OnClickSettingsButton"/>
 			
 			<Button
 				Style="{StaticResource MainMenuButtonStyle}"
-				Content="Exit"/>
+				Content="Exit"
+				Click="OnClickExitButton"/>
 
 		</StackPanel>
 

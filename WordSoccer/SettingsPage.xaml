@@ -1,0 +1,89 @@
+﻿<Page
+    x:Class="WordSoccer.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WordSoccer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<ScrollViewer>
+		<Grid
+		Margin="10">
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<TextBlock
+				Grid.Row="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				TextWrapping="NoWrap"
+				Text="Settings"
+				FontSize="40"
+				Margin="0 0 0 20"/>
+
+			<StackPanel
+				Grid.Row="1"
+				Margin="0 0 0 20">
+
+				<TextBlock
+					Text="Player"
+					FontSize="25"/>
+
+				<TextBlock
+					Text="Player name"
+					Margin="0 10 0 0"
+					FontSize="18"/>
+
+				<TextBox
+					x:Name="PlayerNameTextBox"
+					LostFocus="OnLostFocusPlayerNameTextBox"/>
+
+			</StackPanel>
+
+			<StackPanel
+				Grid.Row="2"
+				Margin="0 0 0 20">
+
+				<TextBlock
+					Text="AI Player"
+					FontSize="25"/>
+
+				<TextBlock
+					Text="AI Player name"
+					FontSize="18"
+					Margin="0 10 0 0"/>
+
+				<TextBox
+					x:Name="AIPlayerNameTextBox"
+					LostFocus="OnLostFocusAIPlayerNameTextBox"/>
+
+				<TextBlock
+					Text="AI Player level"
+					FontSize="18"
+					Margin="0 10 0 0"/>
+
+				<ComboBox
+					x:Name="AIPlayerLevelComboBox"
+					LostFocus="OnLostFocusAIPlayerLevelComboBox">
+
+						<ComboBoxItem Content="Easy"/>
+						<ComboBoxItem Content="Medium"/>
+						<ComboBoxItem Content="Hard"/>
+						<ComboBoxItem Content="Expert"/>
+						<ComboBoxItem Content="Impossible"/>
+
+				</ComboBox>
+
+			</StackPanel>
+
+		</Grid>
+
+	</ScrollViewer>
+
+</Page>
