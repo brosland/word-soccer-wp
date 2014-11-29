@@ -80,6 +80,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Folder Include="Database\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -90,6 +91,18 @@
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Game\Card.cs" />
+    <Compile Include="Game\Dictionaries\SQLiteDictionary.cs" />
+    <Compile Include="Game\Games\BaseGame.cs" />
+    <Compile Include="Game\Games\SinglePlayerGame.cs" />
+    <Compile Include="Game\IDictionary.cs" />
+    <Compile Include="Game\IGame.cs" />
+    <Compile Include="Game\IPlayer.cs" />
+    <Compile Include="Game\Letter.cs" />
+    <Compile Include="Game\LetterGenerator.cs" />
+    <Compile Include="Game\Players\AIPlayer.cs" />
+    <Compile Include="Game\Players\Player.cs" />
+    <Compile Include="Game\Word.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
