@@ -1,53 +1,152 @@
-﻿// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
-
-using System;
+﻿using System;
+using System.Diagnostics;
+using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WordSoccer.Controls;
+using WordSoccer.Game;
+using WordSoccer.Game.Games;
 
 namespace WordSoccer.UserControls
 {
 	public sealed partial class RoundUserControl : UserControl
 	{
-		public RoundUserControl()
+		private readonly InputLetterButton[] inputLetterButtons;
+		private readonly LetterButton[] selectedLetterButtons;
+		private readonly IGame game;
+
+		public RoundUserControl(IGame game)
 		{
+			this.game = game;
+
 			InitializeComponent();
 
-			InitializeSelectedButtons();
+			// input letter buttons
+			inputLetterButtons = new InputLetterButton[BaseGame.LETTERS];
 
-			InitializeInputButtons();
-		}
+			Letter[] letters = game.GetPlayerA().GetLetters();
 
-		private void InitializeInputButtons()
-		{
-			for (int i = 0; i < 11; i++)
+			for (int i = 0; i < inputLetterButtons.Length; i++)
 			{
-				Button button = new Button();
-				button.Style = (Style) Application.Current.Resources["LetterButtonStyle"];
-				button.Content = (char) ('A' + i);
-				
-				Grid.SetColumn(button, i);
-				InputLettersGrid.Children.Add(button);
-			}
-		}
-
-		private void InitializeSelectedButtons()
-		{
-			for (int i = 0; i < 11; i++)
-			{
-				Button button = new Button();
-				button.Style = (Style) Application.Current.Resources["LetterButtonStyle"];
-				button.Content = (char) ('A' + i);
+				InputLetterButton button = inputLetterButtons[i] = new InputLetterButton();
+				button.SetLetter(letters[i]);
+				button.Click += OnClickInputLetterButton;
 
 				Grid.SetColumn(button, i);
-				SelecteLettersGrid.Children.Add(button);
+				inputLettersGrid.Children.Add(button);
 			}
 
-			Button submitButton = new Button();
-			submitButton.Style = (Style) Application.Current.Resources["SubmitButtonStyle"];
-			submitButton.Content = "Submit";
+			// selected letter buttons
+			selectedLetterButtons = new LetterButton[BaseGame.LETTERS];
 
-			Grid.SetColumn(submitButton, 11);
-			SelecteLettersGrid.Children.Add(submitButton);
+			for (int i = 0; i < selectedLetterButtons.Length; i++)
+			{
+				LetterButton button = selectedLetterButtons[i] = new LetterButton();
+				button.Click += OnClickSelectedLetterButton;
+
+				Grid.SetColumn(button, i);
+				selecteLettersGrid.Children.Add(button);
+			}
+
+			// word lists
+			wordListUserControl.SetPlayer(game.GetPlayerA());
+			opponentWordListUserControl.SetPlayer(game.GetPlayerB());
+
+			// submit button
+			UpdateSubmitButton();
+		}
+
+		public void SetLettersBarVisibility(bool visible)
+		{
+			lettersGrid.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
+		}
+
+		public void ShowOpponentWordList(IPlayer opponent)
+		{
+			opponentWordListUserControl.Visibility = Visibility.Visible;
+		}
+
+		private void OnClickInputLetterButton(object sender, RoutedEventArgs routedEventArgs)
+		{
+			InputLetterButton button = (InputLetterButton) sender;
+			button.IsEnabled = false;
+
+			foreach (LetterButton selectedLetterButton in selectedLetterButtons)
+			{
+				if (!selectedLetterButton.HasLetter())
+				{
+					selectedLetterButton.SetLetter(button.GetLetter());
+					break;
+				}
+			}
+
+			UpdateSubmitButton();
+		}
+
+		private void OnClickSelectedLetterButton(object button, RoutedEventArgs routedEventArgs)
+		{
+			DeselectLetter((LetterButton) button);
+
+			UpdateSubmitButton();
+		}
+
+		private void OnClickSubmitButton(object sender, RoutedEventArgs e)
+		{
+			Word word = new Word(GetSelectedWord());
+
+			game.GetPlayerA().AddWord(word);
+
+			foreach (LetterButton button in selectedLetterButtons)
+			{
+				if (button.HasLetter())
+				{
+					DeselectLetter(button);
+				}
+			}
+
+			UpdateSubmitButton();
+		}
+
+		private String GetSelectedWord()
+		{
+			StringBuilder word = new StringBuilder();
+
+			foreach (LetterButton letterButton in selectedLetterButtons)
+			{
+				word.Append(letterButton.HasLetter() ? letterButton.GetLetter().GetSign() : ' ');
+			}
+
+			return word.ToString().Trim();
+		}
+
+		private void DeselectLetter(LetterButton button)
+		{
+			Letter letter = button.RemoveLetter();
+			inputLetterButtons[letter.GetNumber()].IsEnabled = true;
+		}
+
+		private void UpdateSubmitButton()
+		{
+			String currentWord = GetSelectedWord();
+
+			Debug.WriteLine("current word: \"" + currentWord + "\"");
+
+			if (currentWord.Length == 0|| currentWord.Contains(" "))
+			{
+				submitButton.IsEnabled = false;
+				return;
+			}
+
+			foreach (Word word in game.GetPlayerA().GetWords())
+			{
+				if (word.word.Equals(currentWord))
+				{
+					submitButton.IsEnabled = false;
+					return;
+				}
+			}
+
+			submitButton.IsEnabled = true;
 		}
 	}
 }

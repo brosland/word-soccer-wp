@@ -13,6 +13,16 @@ namespace WordSoccer.Game
 			this.word = word;
 		}
 
+		public String WordProperty
+		{
+			get { return word; }
+		}
+
+		public WordState WordStateProperty
+		{
+			get { return state; }
+		}
+
 		public WordState GetState()
 		{
 			return state;

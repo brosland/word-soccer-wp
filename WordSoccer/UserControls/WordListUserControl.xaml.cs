@@ -1,32 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+using WordSoccer.Game;
 
 namespace WordSoccer.UserControls
 {
-	public sealed partial class WordListUserControl : UserControl
+	public sealed partial class WordListUserControl : UserControl, IPlayerListener, Word.IWordListener
 	{
-		public List<object> Words
-		{
-			get; set;
-		}
+		private IPlayer player;
 
 		public WordListUserControl()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
+		}
+
+		public void SetPlayer(IPlayer player)
+		{
+			player.SetListener(this);
+		}
+
+		public void OnWordAdded(Word word)
+		{
+			word.SetListener(this);
+
+			if (wordListView != null && wordListView.Items != null)
+			{
+				wordListView.Items.Add(word);
+			}
+		}
+
+		public void OnStateChanged(Word.WordState state)
+		{
+			if (wordListView != null && wordListView.Items != null && player != null)
+			{
+				wordListView.Items.Clear();
+			
+				foreach (Word word in player.GetWords())
+				{
+					wordListView.Items.Add(word);
+				}
+			}
 		}
 	}
 }

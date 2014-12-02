@@ -16,7 +16,7 @@
 
 		public enum CardType
 		{
-			RED, YELLOW
+			RED, YELLOW, NONE
 		}
 	}
 }

@@ -18,9 +18,14 @@ namespace WordSoccer.Game.Players
 		public Player(String name)
 		{
 			this.name = name;
-			this.words = new List<Word>();
-			this.cards = new List<Card>();
-			this.letters = new Letter[BaseGame.LETTERS];
+			words = new List<Word>();
+			cards = new List<Card>();
+			letters = new Letter[BaseGame.LETTERS];
+
+			for (int i = 0; i < letters.Length; i++)
+			{
+				letters[i] = new Letter(i);
+			}
 		}
 
 		public String GetName()
@@ -128,8 +133,6 @@ namespace WordSoccer.Game.Players
 				return;
 			}
 
-			cards.Add(card);
-
 			int indexOfLastEnableLetter = letters.Length - 1 - GetNumberOfCards(Card.CardType.RED);
 			Letter letter = letters[indexOfLastEnableLetter];
 
@@ -150,6 +153,8 @@ namespace WordSoccer.Game.Players
 				letter.SetCardType(Card.CardType.RED);
 				redCards++;
 			}
+
+			cards.Add(card);
 		}
 
 		public List<Card> GetCards()
@@ -171,11 +176,6 @@ namespace WordSoccer.Game.Players
 
 			words.Clear();
 			cards.Clear();
-
-			for (int i = 0; i < letters.Length; i++)
-			{
-				letters[i] = new Letter(i);
-			}
 		}
 
 		public void OnStartRound(IGame game)

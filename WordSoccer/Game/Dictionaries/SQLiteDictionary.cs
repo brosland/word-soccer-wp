@@ -1,31 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WordSoccer.Game.Dictionaries
 {
-	public class SQLiteDictionary : IDictionary
+	public abstract class SQLiteDictionary : IDictionary
 	{
-		public string GetLangCode()
-		{
-			throw new NotImplementedException();
-		}
+		public abstract string GetLangCode();
 
-		public Dictionary<Char, Double> GetLetterFrequency()
-		{
-			throw new NotImplementedException();
-		}
+		public abstract bool IsWordValid(string word);
 
-		public bool IsWordValid(string word)
-		{
-			throw new NotImplementedException();
-		}
+		public abstract Dictionary<Char, Double> GetLetterFrequency();
 
-		public List<String> GetValidWordsFromLetters(char[] letters)
-		{
-			throw new NotImplementedException();
-		}
+		public abstract List<String> GetValidWordsFromLetters(char[] letters);
 	}
 }

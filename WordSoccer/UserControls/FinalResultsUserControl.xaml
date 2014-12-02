@@ -16,11 +16,10 @@
 			Style="{StaticResource MainMenuWrapperStyle}">
 
 			<Border
-				Style="{StaticResource ResultsTable.HeaderCellStyle}">
+				Style="{StaticResource HeaderCellStyle}">
 
 				<TextBlock
-					Style="{StaticResource ResultsTable.CellTextStyle}"
-					x:Name="HeaderTextBlock"
+					Style="{StaticResource CellTextStyle}"
 					Text="Final results"/>
 			</Border>
 
@@ -38,70 +37,72 @@
 				</Grid.ColumnDefinitions>
 
 				<!-- Total letters -->
-
 				<Border
 					Grid.Row="0"
 					Grid.Column="0"
-					Style="{StaticResource ResultsTable.ValueCellStyle}">
+					Style="{StaticResource ValueCellStyle}"
+					x:Name="playerATotalLettersBorder">
 
 					<TextBlock
-						Style="{StaticResource ResultsTable.CellTextStyle}"
-						x:Name="PlayerATotalLettersTextBock"
+						Style="{StaticResource CellTextStyle}"
+						x:Name="playerATotalLettersTextBlock"
 						Text="0"/>
 				</Border>
 
 				<Border
 					Grid.Row="0"
 					Grid.Column="1"
-					Style="{StaticResource ResultsTable.TitleCellStyle}">
+					Style="{StaticResource TitleCellStyle}">
 
 					<TextBlock
-						Style="{StaticResource ResultsTable.CellTextStyle}"
+						Style="{StaticResource CellTextStyle}"
 						Text="Total letters"/>
 				</Border>
 
 				<Border
 					Grid.Row="0"
 					Grid.Column="2"
-					Style="{StaticResource ResultsTable.ValueCellStyle}">
+					Style="{StaticResource ValueCellStyle}"
+					x:Name="playerBTotalLettersBorder">
 
 					<TextBlock
-						Style="{StaticResource ResultsTable.CellTextStyle}"
-						x:Name="PlayerBTotalLettersTextBock"
+						Style="{StaticResource CellTextStyle}"
+						x:Name="playerBTotalLettersTextBlock"
 						Text="0"/>
 				</Border>
 
 				<!-- Score -->
-
 				<Border
 					Grid.Row="1"
 					Grid.Column="0"
-					Style="{StaticResource ResultsTable.ValueCellStyle}">
+					Style="{StaticResource ValueCellStyle}"
+					x:Name="playerAScoreBorder">
 
 					<TextBlock
-						Style="{StaticResource ResultsTable.CellTextStyle}"
-						x:Name="PlayerAScoreTextBlock"
+						Style="{StaticResource CellTextStyle}"
+						x:Name="playerAScoreTextBlock"
 						Text="0"/>
 				</Border>
 
 				<Border
 					Grid.Row="1"
 					Grid.Column="1"
-					Style="{StaticResource ResultsTable.TitleCellStyle}">
+					Style="{StaticResource TitleCellStyle}">
 
 					<TextBlock
-						Style="{StaticResource ResultsTable.CellTextStyle}"
+						Style="{StaticResource CellTextStyle}"
 						Text="Score"/>
 				</Border>
 
 				<Border
 					Grid.Row="1"
 					Grid.Column="2"
-					Style="{StaticResource ResultsTable.ValueCellStyle}">
+					Style="{StaticResource ValueCellStyle}"
+					x:Name="playerBScoreBorder">
 
 					<TextBlock
-						Style="{StaticResource ResultsTable.CellTextStyle}"
-						x:Name="PlayerBScoreTextView"
+						Style="{StaticResource CellTextStyle}"
+						x:Name="playerBScoreTextBlock"
 						Text="0"/>
 				</Border>
 

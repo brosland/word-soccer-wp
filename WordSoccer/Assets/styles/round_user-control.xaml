@@ -30,8 +30,15 @@
 
 		<Setter Property="Background" Value="#990000ff"/>
 		<Setter Property="HorizontalAlignment" Value="Stretch"/>
-		<Setter Property="Height" Value="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}"/>
 		<Setter Property="Margin" Value="0 0 5 0"/>
+	</Style>
+
+	<Style
+		x:Key="LetterButtonWithYellowCardStyle"
+		TargetType="Button"
+		BasedOn="{StaticResource LetterButtonStyle}">
+
+		<Setter Property="Background" Value="#99ffcc00"/>
 	</Style>
 
 	<Style
@@ -39,7 +46,31 @@
 		TargetType="Button"
 		BasedOn="{StaticResource LetterButtonStyle}">
 
-		<Setter Property="Background" Value="#cccccc"/>
+		<Setter Property="Background" Value="#000000"/>
+	</Style>
+
+	<Style
+		x:Key="DisabledLetterButtonWithoutTextStyle"
+		TargetType="Button"
+		BasedOn="{StaticResource DisabledLetterButtonStyle}">
+
+		<Setter Property="Foreground" Value="#000000"/>
+	</Style>
+
+	<Style
+		x:Key="DisabledLetterButtonWithYellowCardStyle"
+		TargetType="Button"
+		BasedOn="{StaticResource LetterButtonStyle}">
+
+		<Setter Property="Background" Value="#44ffcc00"/>
+	</Style>
+
+	<Style
+		x:Key="DisabledLetterButtonWithRedCardStyle"
+		TargetType="Button"
+		BasedOn="{StaticResource LetterButtonStyle}">
+
+		<Setter Property="Background" Value="#44ff0000"/>
 	</Style>
 
 	<Style

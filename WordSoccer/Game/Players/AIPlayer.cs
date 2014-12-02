@@ -29,7 +29,7 @@ namespace WordSoccer.Game.Players
 			this.maxPercentage = percentage[1];
 		}
 
-		public async void OnStartRound(IGame game)
+		public new async void OnStartRound(IGame game)
 		{
 			base.OnStartRound(game);
 

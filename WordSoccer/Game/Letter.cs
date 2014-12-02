@@ -7,7 +7,7 @@ namespace WordSoccer.Game
 		private readonly int number;
 		private char sign = ' ';
 		private bool used;
-		private Card.CardType cardType;
+		private Card.CardType cardType = Card.CardType.NONE;
 		private ILetterListener listener;
 
 		public Letter(int number)

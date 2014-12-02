@@ -13,6 +13,7 @@
 				<ResourceDictionary Source="/Assets/styles/game_page.xaml"/>
 				<ResourceDictionary Source="/Assets/styles/round_user-control.xaml"/>
 				<ResourceDictionary Source="/Assets/styles/round-results_user-control.xaml"/>
+				<ResourceDictionary Source="/Assets/styles/word-list_user-control.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 
 			<Style

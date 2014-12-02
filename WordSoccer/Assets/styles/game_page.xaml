@@ -67,31 +67,20 @@
 
 	<!-- Cards -->
 	<Style
-		x:Key="CardWrapperStyle"
+		x:Key="BaseCardStyle"
 		TargetType="Border">
 
+		<Setter Property="Width" Value="15"/>
+		<Setter Property="Height" Value="20"/>
 		<Setter Property="Margin" Value="2 0"/>
-		<Setter Property="Padding" Value="4"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
 		<Setter Property="Visibility" Value="Collapsed"/>
 	</Style>
 
 	<Style
-		x:Key="RedCardWrapperStyle"
+		x:Key="YellowCardStyle"
 		TargetType="Border"
-		BasedOn="{StaticResource CardWrapperStyle}">
-
-		<Setter Property="Background">
-			<Setter.Value>
-				<ImageBrush ImageSource="/Assets/red_card.png"/>
-			</Setter.Value>
-		</Setter>
-	</Style>
-
-	<Style
-		x:Key="YellowCardWrapperStyle"
-		TargetType="Border"
-		BasedOn="{StaticResource CardWrapperStyle}">
+		BasedOn="{StaticResource BaseCardStyle}">
 
 		<Setter Property="Background">
 			<Setter.Value>
@@ -101,14 +90,27 @@
 	</Style>
 
 	<Style
-		x:Key="CardStyle"
+		x:Key="RedCardStyle"
+		TargetType="Border"
+		BasedOn="{StaticResource BaseCardStyle}">
+
+		<Setter Property="Background">
+			<Setter.Value>
+				<ImageBrush ImageSource="/Assets/red_card.png"/>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style
+		x:Key="CardTextStyle"
 		TargetType="TextBlock">
 
 		<Setter Property="Foreground" Value="#ffffff"/>
 		<Setter Property="FontSize" Value="14"/>
-		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="FontWeight" Value="SemiBold"/>
 		<Setter Property="TextAlignment" Value="Center"/>
-		<Setter Property="Width" Value="9"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
 	</Style>
 
 	<!-- Round and time -->
