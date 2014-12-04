@@ -80,7 +80,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Content Include="Assets\word_soccer.sql" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -89,15 +88,16 @@
     </Compile>
     <Compile Include="Controls\InputLetterButton.cs" />
     <Compile Include="Controls\LetterButton.cs" />
-    <Compile Include="Game\Converters\StateConverter.cs" />
+    <Compile Include="Converters\WordListTextStyleConverter.cs" />
+    <Compile Include="Game\Dictionaries\HttpDictionary.cs" />
+    <Compile Include="Game\ISinglePlayerDictionary.cs" />
+    <Compile Include="Game\WordList.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Game\Dictionaries\FakeSQLiteDictionary.cs" />
-    <Compile Include="Model\DatabaseHelper.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game\Card.cs" />
-    <Compile Include="Game\Dictionaries\SQLiteDictionary.cs" />
     <Compile Include="Game\Games\BaseGame.cs" />
     <Compile Include="Game\Games\SinglePlayerGame.cs" />
     <Compile Include="Game\IDictionary.cs" />
@@ -115,8 +115,6 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SQLite.cs" />
-    <Compile Include="SQLiteAsync.cs" />
     <Compile Include="UserControls\FinalResultsUserControl.xaml.cs">
       <DependentUpon>FinalResultsUserControl.xaml</DependentUpon>
     </Compile>
@@ -207,9 +205,6 @@
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
-    </SDKReference>
-    <SDKReference Include="SQLite.WP81, Version=3.8.7.2">
-      <Name>SQLite for Windows Phone 8.1</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup />

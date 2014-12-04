@@ -1,45 +1,57 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
+using Windows.Foundation.Diagnostics;
 using Windows.UI.Xaml.Controls;
-
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 using WordSoccer.Game;
 
 namespace WordSoccer.UserControls
 {
-	public sealed partial class WordListUserControl : UserControl, IPlayerListener, Word.IWordListener
+	public sealed partial class WordListUserControl : UserControl, WordList.IWordListListener
 	{
+		public ObservableCollection<WordListItem> Words { get; set; }
 		private IPlayer player;
 
 		public WordListUserControl()
 		{
 			InitializeComponent();
+
+			Words = new ObservableCollection<WordListItem>();
 		}
 
 		public void SetPlayer(IPlayer player)
 		{
-			player.SetListener(this);
+			this.player = player;
+			player.GetWordList().SetListener(this);
 		}
 
-		public void OnWordAdded(Word word)
+		public void OnWordListChanged()
 		{
-			word.SetListener(this);
+			Words.Clear();
 
-			if (wordListView != null && wordListView.Items != null)
+			for (int i = 0; i < player.GetWordList().Count; i++)
 			{
-				wordListView.Items.Add(word);
+				Words.Add(new WordListItem(player.GetWordList()[i], i + 1));
 			}
 		}
 
-		public void OnStateChanged(Word.WordState state)
+		public class WordListItem
 		{
-			if (wordListView != null && wordListView.Items != null && player != null)
+			private readonly Word word;
+			private int index;
+
+			public WordListItem(Word word, int index)
 			{
-				wordListView.Items.Clear();
-			
-				foreach (Word word in player.GetWords())
-				{
-					wordListView.Items.Add(word);
-				}
+				this.word = word;
+				this.index = index;
+			}
+
+			public Word Word
+			{
+				get { return word; }
+			}
+
+			public int Index
+			{
+				get { return index; }
 			}
 		}
 	}

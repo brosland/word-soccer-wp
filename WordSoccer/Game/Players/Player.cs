@@ -8,17 +8,16 @@ namespace WordSoccer.Game.Players
 	public class Player : IPlayer
 	{
 		private readonly String name;
-		private readonly List<Word> words;
+		private readonly WordList wordList;
 		private readonly List<Card> cards;
 		private readonly Letter[] letters;
 		private int points, totalPoints, score, usedLetters, redCards, yellowCards;
 		private IGame game;
-		private IPlayerListener listener;
 
 		public Player(String name)
 		{
 			this.name = name;
-			words = new List<Word>();
+			wordList = new WordList();
 			cards = new List<Card>();
 			letters = new Letter[BaseGame.LETTERS];
 
@@ -50,13 +49,7 @@ namespace WordSoccer.Game.Players
 				throw new Exception("Game is not started properly.");
 			}
 
-			words.Add(word);
-			words.Sort();
-
-			if (listener != null)
-			{
-				listener.OnWordAdded(word);
-			}
+			wordList.Add(word);
 
 			bool valid = await Task.Run(() => game.GetDictionary().IsWordValid(word.word));
 
@@ -72,20 +65,18 @@ namespace WordSoccer.Game.Players
 			{
 				word.SetState(Word.WordState.INVALID);
 			}
-			
-			words.Sort();
 		}
 
-		public List<Word> GetWords()
+		public WordList GetWordList()
 		{
-			return words;
+			return wordList;
 		}
 
 		public int GetCurrentLongestWord()
 		{
 			int length = 0;
 
-			foreach (Word word in words)
+			foreach (Word word in wordList)
 			{
 				if (word.GetState() == Word.WordState.VALID && word.word.Length > length)
 				{
@@ -169,16 +160,16 @@ namespace WordSoccer.Game.Players
 				: yellowCards / 2 + redCards;
 		}
 
-		public void OnStartGame(IGame game)
+		public virtual void OnStartGame(IGame game)
 		{
 			this.game = game;
 			score = points = totalPoints = usedLetters = redCards = yellowCards = 0;
 
-			words.Clear();
+			wordList.Clear();
 			cards.Clear();
 		}
 
-		public void OnStartRound(IGame game)
+		public virtual void OnStartRound(IGame game)
 		{
 			// reset used letters
 			for (int i = 0; i < letters.Length; i++)
@@ -190,12 +181,7 @@ namespace WordSoccer.Game.Players
 			usedLetters = 0;
 
 			// reset found words
-			words.Clear();
-		}
-
-		public void SetListener(IPlayerListener listener)
-		{
-			this.listener = listener;
+			wordList.Clear();
 		}
 
 		private void AddUsedLetters(Word word)

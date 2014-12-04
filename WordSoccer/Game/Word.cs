@@ -13,12 +13,7 @@ namespace WordSoccer.Game
 			this.word = word;
 		}
 
-		public String WordProperty
-		{
-			get { return word; }
-		}
-
-		public WordState WordStateProperty
+		public WordState State
 		{
 			get { return state; }
 		}
@@ -28,22 +23,19 @@ namespace WordSoccer.Game
 			return state;
 		}
 
-		public Word SetState(WordState state)
+		public void SetState(WordState state)
 		{
 			this.state = state;
 
 			if (listener != null)
 			{
-				listener.OnStateChanged(state);
+				listener.OnStateChanged(this);
 			}
-
-			return this;
 		}
 
-		public Word SetListener(IWordListener listener)
+		public void SetListener(IWordListener listener)
 		{
 			this.listener = listener;
-			return this;
 		}
 
 		public bool Equals(Word wordB)
@@ -70,6 +62,11 @@ namespace WordSoccer.Game
 			return String.Compare(this.word, wordB.word, StringComparison.Ordinal);
 		}
 
+		public override String ToString()
+		{
+			return word.ToUpper();
+		}
+
 		public enum WordState
 		{
 			PENDING = 1, VALID = 2, REMOVED = 3, INVALID = 4
@@ -77,7 +74,7 @@ namespace WordSoccer.Game
 
 		public interface IWordListener
 		{
-			void OnStateChanged(WordState state);
+			void OnStateChanged(Word word);
 		}
 	}
 }

@@ -10,14 +10,12 @@ using WordSoccer.Game;
 using WordSoccer.Game.Dictionaries;
 using WordSoccer.Game.Games;
 using WordSoccer.Game.Players;
-using WordSoccer.Model;
 using WordSoccer.UserControls;
 
 namespace WordSoccer
 {
 	public sealed partial class GamePage : Page, IGameListener
 	{
-		private DatabaseHelper databaseHelper;
 		private IGame game;
 		private DispatcherTimer timer;
 		private UserControl currentUserControl;
@@ -33,10 +31,6 @@ namespace WordSoccer
 			StatusBar.GetForCurrentView().HideAsync();
 
 			HardwareButtons.BackPressed += OnClickBackButton;
-
-			//databaseHelper = new DatabaseHelper("word_soccer.sql", "Assets\\word_soccer.sql");
-			//databaseHelper.OnInitHandler += (obj, args) => CreateGame();
-			//databaseHelper.Init();
 
 			CreateGame();
 		}
@@ -63,7 +57,7 @@ namespace WordSoccer
 			AIPlayer.Level level = (AIPlayer.Level) Int32.Parse((String) settings.Load(
 				Settings.AIPLAYER_LEVEL_KEY, Settings.DEFAULT_AIPLAYER_LEVEL));
 
-			FakeSQLiteDictionary dictionary = new FakeSQLiteDictionary("en");
+			ISinglePlayerDictionary dictionary = new HttpDictionary("en");
 
 			Player playerA = new Player(playerAName);
 			AIPlayer playerB = new AIPlayer(playerBName, level);
@@ -206,19 +200,10 @@ namespace WordSoccer
 
 		public void OnFinishGame(IGame game)
 		{
-			UpdateStatusBar("", true);
+			UpdateStatusBar("", false);
+			continueButton.Visibility = Visibility.Collapsed;
 
 			ReplaceCurrentContent(new FinalResultsUserControl(game));
-
-			RoutedEventHandler continueDelagate = null;
-			continueDelagate = (sender2, routedEvent2) =>
-			{
-				continueButton.Click -= continueDelagate;
-
-				// TODO finish game, go to main menu
-			};
-
-			continueButton.Click += continueDelagate;
 		}
 
 		private void ReplaceCurrentContent(UserControl userControl)

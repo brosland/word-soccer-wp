@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -129,15 +128,13 @@ namespace WordSoccer.UserControls
 		{
 			String currentWord = GetSelectedWord();
 
-			Debug.WriteLine("current word: \"" + currentWord + "\"");
-
 			if (currentWord.Length == 0|| currentWord.Contains(" "))
 			{
 				submitButton.IsEnabled = false;
 				return;
 			}
 
-			foreach (Word word in game.GetPlayerA().GetWords())
+			foreach (Word word in game.GetPlayerA().GetWordList())
 			{
 				if (word.word.Equals(currentWord))
 				{

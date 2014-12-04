@@ -188,8 +188,9 @@
 					Grid.Column="2"
 					Style="{StaticResource ButtonStyle}"
 					x:Name="continueButton"
+					Content="Continue"
 					HorizontalAlignment="Right"
-					Content="Continue"/>
+					Visibility="Collapsed"/>
 
 			</Grid>
 

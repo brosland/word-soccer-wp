@@ -5,7 +5,7 @@
 		public static readonly int LETTERS = 11;
 		public static readonly int ROUNDS = 6;
 		public static readonly int MAX_RED_CARDS = 6;
-		public static readonly int ROUND_DURATION = 20000; // 90s = 1:30
+		public static readonly int ROUND_DURATION = 90000; // 90s = 1:30
 		public static readonly int MIN_GOAL_LETTERS = 21;
 
 		public abstract void Init();

@@ -13,7 +13,7 @@ namespace WordSoccer.Game
 
 		void AddWord(Word word);
 
-		List<Word> GetWords();
+		WordList GetWordList();
 
 		int GetCurrentLongestWord();
 
@@ -38,12 +38,5 @@ namespace WordSoccer.Game
 		void OnStartGame(IGame game);
 
 		void OnStartRound(IGame game);
-
-		void SetListener(IPlayerListener listener);
-	}
-
-	public interface IPlayerListener
-	{
-		void OnWordAdded(Word word);
 	}
 }

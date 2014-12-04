@@ -4,44 +4,50 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converters="using:WordSoccer.Game.Converters"
+    xmlns:converters="using:WordSoccer.Converters"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+	x:Name="wordListUserControl">
 
+	<UserControl.Resources>
+		<converters:WordListTextStyleConverter x:Key="WordListTextStyleConverter" />
+	</UserControl.Resources>
+
+	<ScrollViewer>
 	<StackPanel
-		Background="#99ffffff"
-		Margin="5">
-
-		<ScrollViewer>
-
+		Style="{StaticResource WordListStyle}">
+			
 			<ListView
-				x:Name="wordListView">
+				x:Name="wordListView"
+				ItemsSource="{Binding ElementName=wordListUserControl, Path=Words}">
+
+				<ListView.ItemContainerStyle>
+					<Style TargetType="ListViewItem" BasedOn="{StaticResource WordListItemStyle}"/>
+				</ListView.ItemContainerStyle>
 
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<Grid
-						Background="#99ffffff">
-
-							<Grid.Resources>
-								<converters:StateConverter x:Key="StatePropertyConverter" />
-							</Grid.Resources>
+						<Grid>
 
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="Auto"/>
 								<ColumnDefinition Width="*"/>
 							</Grid.ColumnDefinitions>
 
-							<TextBlock
-							Grid.Column="0"
-							Text="N"
-							Padding="5"/>
+							<Border
+								Grid.Column="0"
+								Style="{StaticResource WordListIndexBorderStyle}">
+
+								<TextBlock
+									Style="{StaticResource WordListIndexTextStyle}"
+									Text="{Binding Index}"/>
+							</Border>
 
 							<TextBlock
-							Grid.Column="1"
-							Style="{Binding WordStateProperty, Converter={StaticResource StatePropertyConverter}}"
-							Text="{Binding WordProperty}"
-							Padding="5"/>
+								Grid.Column="1"
+								Style="{Binding Word.State, Converter={StaticResource WordListTextStyleConverter}}"
+								Text="{Binding Word}"/>
 
 						</Grid>
 
@@ -51,8 +57,8 @@
 
 			</ListView>
 
-		</ScrollViewer>
-		
-	</StackPanel>
+		</StackPanel>
+
+	</ScrollViewer>
 
 </UserControl>

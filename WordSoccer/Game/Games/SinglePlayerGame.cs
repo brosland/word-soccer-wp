@@ -7,14 +7,14 @@ namespace WordSoccer.Game.Games
 {
 	public class SinglePlayerGame : BaseGame
 	{
-		private readonly SQLiteDictionary dictionary;
+		private readonly ISinglePlayerDictionary dictionary;
 		private readonly IPlayer playerA, playerB;
 		private readonly List<IGameListener> listeners;
 		private LetterGenerator generator;
 		private int currentRoundNumber;
 		private String currentRoundLetters;
 
-		public SinglePlayerGame(SQLiteDictionary dictionary, IPlayer playerA, IPlayer playerB)
+		public SinglePlayerGame(ISinglePlayerDictionary dictionary, IPlayer playerA, IPlayer playerB)
 		{
 			this.dictionary = dictionary;
 			this.playerA = playerA;
@@ -24,7 +24,7 @@ namespace WordSoccer.Game.Games
 
 		public async override void Init()
 		{
-			Dictionary<Char, Double> letterFrequency = await Task.Run(() => dictionary.GetLetterFrequency());
+			Dictionary<Char, Double> letterFrequency = await Task.Run(() => dictionary.GetSignFrequency());
 			generator = new LetterGenerator(letterFrequency);
 
 			foreach (IGameListener listener in listeners)
@@ -86,25 +86,29 @@ namespace WordSoccer.Game.Games
 
 		public override void EvaluateRound()
 		{
-			foreach (Word wordA in playerA.GetWords())
+			Dictionary<Word, Word> equalWords = new Dictionary<Word, Word>();
+
+			foreach (Word wordA in playerA.GetWordList())
 			{
 				if (wordA.GetState() != Word.WordState.VALID)
 				{
 					continue;
 				}
 
-				foreach (Word wordB in playerB.GetWords())
+				foreach (Word wordB in playerB.GetWordList())
 				{
 					if (wordB.GetState() == Word.WordState.VALID && wordA.Equals(wordB))
 					{
-						wordA.SetState(Word.WordState.REMOVED);
-						wordB.SetState(Word.WordState.REMOVED);
+						equalWords.Add(wordA, wordB);
 					}
 				}
 			}
 
-			playerA.GetWords().Sort();
-			playerB.GetWords().Sort();
+			foreach (Word wordA in equalWords.Keys)
+			{
+				wordA.SetState(Word.WordState.REMOVED);
+				equalWords[wordA].SetState(Word.WordState.REMOVED);
+			}
 
 			foreach (IGameListener listener in listeners)
 			{

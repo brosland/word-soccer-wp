@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WordSoccer.Game.Dictionaries;
 using WordSoccer.Game.Games;
 
 namespace WordSoccer.Game.Players
@@ -29,14 +28,14 @@ namespace WordSoccer.Game.Players
 			this.maxPercentage = percentage[1];
 		}
 
-		public new async void OnStartRound(IGame game)
+		public override async void OnStartRound(IGame game)
 		{
 			base.OnStartRound(game);
 
 			int letterCount = BaseGame.LETTERS - GetNumberOfCards(Card.CardType.RED); // TODO
 			char[] letters = game.GetCurrentRoundLetters().Substring(0, letterCount).ToCharArray();
 
-			SQLiteDictionary dictionary = (SQLiteDictionary) game.GetDictionary();
+			ISinglePlayerDictionary dictionary = (ISinglePlayerDictionary) game.GetDictionary();
 			List<String> strings = await Task.Run(() => dictionary.GetValidWordsFromLetters(letters));
 
 			double percentage = minPercentage + (maxPercentage - minPercentage) * percentageGenerator.NextDouble();

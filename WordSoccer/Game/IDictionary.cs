@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace WordSoccer.Game
 {
@@ -6,6 +7,6 @@ namespace WordSoccer.Game
 	{
 		String GetLangCode();
 
-		bool IsWordValid(String word);
+		Task<bool> IsWordValid(String word);
 	}
 }
