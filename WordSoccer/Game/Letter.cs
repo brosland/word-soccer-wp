@@ -7,7 +7,7 @@ namespace WordSoccer.Game
 		private readonly int number;
 		private char sign = ' ';
 		private bool used;
-		private Card.CardType cardType = Card.CardType.NONE;
+		private Card card = Card.NONE;
 		private ILetterListener listener;
 
 		public Letter(int number)
@@ -56,17 +56,17 @@ namespace WordSoccer.Game
 
 		public bool IsDisabled()
 		{
-			return cardType == Card.CardType.RED;
+			return card == Card.RED;
 		}
 
-		public Card.CardType GetCardType()
+		public Card GetCard()
 		{
-			return cardType;
+			return card;
 		}
 
-		public Letter SetCardType(Card.CardType cardType)
+		public Letter SetCard(Card card)
 		{
-			this.cardType = cardType;
+			this.card = card;
 
 			if (IsDisabled())
 			{

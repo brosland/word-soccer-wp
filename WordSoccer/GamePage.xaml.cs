@@ -170,21 +170,21 @@ namespace WordSoccer
 		{
 			// player A
 			playerAScoreTextBlock.Text = game.GetPlayerA().GetScore().ToString();
-			playerAYellowCardBorder.Visibility = game.GetPlayerA().GetNumberOfCards(Card.CardType.YELLOW) > 0
+			playerAYellowCardBorder.Visibility = game.GetPlayerA().GetNumberOfCards(Card.YELLOW) > 0
 				? Visibility.Visible : Visibility.Collapsed;
-			playerARedCardBorder.Visibility = game.GetPlayerA().GetNumberOfCards(Card.CardType.RED) > 0
+			playerARedCardBorder.Visibility = game.GetPlayerA().GetNumberOfCards(Card.RED) > 0
 				? Visibility.Visible : Visibility.Collapsed;
-			playerARedCardTextBlock.Text = game.GetPlayerA().GetNumberOfCards(Card.CardType.RED) > 1
-				? game.GetPlayerA().GetNumberOfCards(Card.CardType.RED).ToString() : "";
+			playerARedCardTextBlock.Text = game.GetPlayerA().GetNumberOfCards(Card.RED) > 1
+				? game.GetPlayerA().GetNumberOfCards(Card.RED).ToString() : "";
 
 			// player B
 			playerBScoreTextBlock.Text = game.GetPlayerB().GetScore().ToString();
-			playerBYellowCardBorder.Visibility = game.GetPlayerB().GetNumberOfCards(Card.CardType.YELLOW) > 0
+			playerBYellowCardBorder.Visibility = game.GetPlayerB().GetNumberOfCards(Card.YELLOW) > 0
 				? Visibility.Visible : Visibility.Collapsed;
-			playerBRedCardBorder.Visibility = game.GetPlayerB().GetNumberOfCards(Card.CardType.RED) > 0
+			playerBRedCardBorder.Visibility = game.GetPlayerB().GetNumberOfCards(Card.RED) > 0
 				? Visibility.Visible : Visibility.Collapsed;
-			playerBRedCardTextBlock.Text = game.GetPlayerB().GetNumberOfCards(Card.CardType.RED) > 1
-				? game.GetPlayerB().GetNumberOfCards(Card.CardType.RED).ToString() : "";
+			playerBRedCardTextBlock.Text = game.GetPlayerB().GetNumberOfCards(Card.RED) > 1
+				? game.GetPlayerB().GetNumberOfCards(Card.RED).ToString() : "";
 
 			if (game.HasNextRound())
 			{

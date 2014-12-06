@@ -12,7 +12,7 @@ namespace WordSoccer.Controls
 		public LetterButton()
 		{
 			IsEnabled = false;
-			Content = "_";
+			Content = " ";
 
 			UpdateStyle();
 		}
@@ -32,7 +32,7 @@ namespace WordSoccer.Controls
 			this.letter = letter;
 
 			Content = letter.GetSign().ToString().ToUpper();
-			IsEnabled = letter.GetCardType() != Card.CardType.RED;
+			IsEnabled = letter.GetCard() != Card.RED;
 
 			UpdateStyle();
 		}
@@ -42,7 +42,7 @@ namespace WordSoccer.Controls
 			Letter letter = this.letter;
 			this.letter = null;
 
-			Content = "_";
+			Content = " ";
 			IsEnabled = false;
 
 			UpdateStyle();

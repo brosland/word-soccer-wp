@@ -11,24 +11,22 @@ namespace WordSoccer.Game
 		public LetterGenerator(Dictionary<Char, Double> letterFrequency)
 		{
 			this.letterFrequency = letterFrequency;
-			this.generator = new Random();
+			generator = new Random();
 		}
 
 		public char NextLetter()
 		{
 			double x = generator.NextDouble();
-			double minBoundary = 0f, maxBoundary;
+			double boundary = 0f;
 
 			foreach (KeyValuePair<char, double> letter in letterFrequency)
 			{
-				maxBoundary = minBoundary + letter.Value;
+				boundary += letter.Value;
 
-				if (minBoundary <= x && x < maxBoundary)
+				if (x <= boundary)
 				{
 					return letter.Key;
 				}
-
-				minBoundary = maxBoundary;
 			}
 
 			throw new ArgumentOutOfRangeException();

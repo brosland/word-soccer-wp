@@ -20,7 +20,7 @@
 			
 			<ListView
 				x:Name="wordListView"
-				ItemsSource="{Binding ElementName=wordListUserControl, Path=Words}">
+				ItemsSource="{Binding ElementName=wordListUserControl, Path=items}">
 
 				<ListView.ItemContainerStyle>
 					<Style TargetType="ListViewItem" BasedOn="{StaticResource WordListItemStyle}"/>

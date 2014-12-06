@@ -1,35 +1,37 @@
-﻿using System.Collections.ObjectModel;
-using Windows.Foundation.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
 using WordSoccer.Game;
 
 namespace WordSoccer.UserControls
 {
-	public sealed partial class WordListUserControl : UserControl, WordList.IWordListListener
+	public sealed partial class WordListUserControl : UserControl, IPlayerListener
 	{
-		public ObservableCollection<WordListItem> Words { get; set; }
+		public ObservableCollection<WordListItem> items { get; set; }
 		private IPlayer player;
 
 		public WordListUserControl()
 		{
 			InitializeComponent();
 
-			Words = new ObservableCollection<WordListItem>();
+			items = new ObservableCollection<WordListItem>();
 		}
 
 		public void SetPlayer(IPlayer player)
 		{
 			this.player = player;
-			player.GetWordList().SetListener(this);
+			player.SetListener(this);
 		}
 
-		public void OnWordListChanged()
+		public void OnWordListChange()
 		{
-			Words.Clear();
+			items.Clear();
 
-			for (int i = 0; i < player.GetWordList().Count; i++)
+			List<Word> words = player.GetWords();
+
+			for (int i = 0; i < words.Count; i++)
 			{
-				Words.Add(new WordListItem(player.GetWordList()[i], i + 1));
+				items.Add(new WordListItem(words[i], i + 1));
 			}
 		}
 

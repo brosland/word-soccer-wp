@@ -8,16 +8,18 @@ namespace WordSoccer.Game.Players
 	public class Player : IPlayer
 	{
 		private readonly String name;
-		private readonly WordList wordList;
+		private readonly List<Word> words;
 		private readonly List<Card> cards;
 		private readonly Letter[] letters;
+		private readonly Word.IWordListener wordListener;
 		private int points, totalPoints, score, usedLetters, redCards, yellowCards;
 		private IGame game;
+		private IPlayerListener listener;
 
 		public Player(String name)
 		{
 			this.name = name;
-			wordList = new WordList();
+			words = new List<Word>();
 			cards = new List<Card>();
 			letters = new Letter[BaseGame.LETTERS];
 
@@ -25,6 +27,8 @@ namespace WordSoccer.Game.Players
 			{
 				letters[i] = new Letter(i);
 			}
+
+			wordListener = new WordListener(this);
 		}
 
 		public String GetName()
@@ -49,7 +53,10 @@ namespace WordSoccer.Game.Players
 				throw new Exception("Game is not started properly.");
 			}
 
-			wordList.Add(word);
+			word.SetListener(wordListener);
+
+			words.Add(word);
+			WordListChanged();
 
 			bool valid = await Task.Run(() => game.GetDictionary().IsWordValid(word.word));
 
@@ -67,16 +74,16 @@ namespace WordSoccer.Game.Players
 			}
 		}
 
-		public WordList GetWordList()
+		public List<Word> GetWords()
 		{
-			return wordList;
+			return new List<Word>(words);
 		}
 
 		public int GetCurrentLongestWord()
 		{
 			int length = 0;
 
-			foreach (Word word in wordList)
+			foreach (Word word in words)
 			{
 				if (word.GetState() == Word.WordState.VALID && word.word.Length > length)
 				{
@@ -109,7 +116,7 @@ namespace WordSoccer.Game.Players
 
 		public bool HasUsedAllLetters()
 		{
-			return usedLetters == BaseGame.LETTERS;
+			return usedLetters >= BaseGame.LETTERS - GetNumberOfCards(Card.RED);
 		}
 
 		public int GetNumberOfUsedLetters()
@@ -119,29 +126,28 @@ namespace WordSoccer.Game.Players
 
 		public void AddCard(Card card)
 		{
-			if (GetNumberOfCards(Card.CardType.RED) + 1 > BaseGame.MAX_RED_CARDS)
+			if (GetNumberOfCards(Card.RED) + 1 > BaseGame.MAX_RED_CARDS)
 			{
 				return;
 			}
 
-			int indexOfLastEnableLetter = letters.Length - 1 - GetNumberOfCards(Card.CardType.RED);
+			int indexOfLastEnableLetter = letters.Length - 1 - GetNumberOfCards(Card.RED);
 			Letter letter = letters[indexOfLastEnableLetter];
 
-			if (card.GetCardType() == Card.CardType.YELLOW)
+			if (card == Card.YELLOW)
 			{
-				letter.SetCardType(letter.GetCardType() == Card.CardType.YELLOW
-					? Card.CardType.RED : Card.CardType.YELLOW);
+				letter.SetCard(letter.GetCard() == Card.YELLOW ? Card.RED : Card.YELLOW);
 				yellowCards++;
 			}
 			else
 			{
-				if (letter.GetCardType() == Card.CardType.YELLOW)
+				if (letter.GetCard() == Card.YELLOW)
 				{
 					Letter prevLetter = letters[indexOfLastEnableLetter - 1];
-					prevLetter.SetCardType(Card.CardType.YELLOW);
+					prevLetter.SetCard(Card.YELLOW);
 				}
 
-				letter.SetCardType(Card.CardType.RED);
+				letter.SetCard(Card.RED);
 				redCards++;
 			}
 
@@ -150,12 +156,12 @@ namespace WordSoccer.Game.Players
 
 		public List<Card> GetCards()
 		{
-			return cards;
+			return new List<Card>(cards);
 		}
 
-		public int GetNumberOfCards(Card.CardType cardType)
+		public int GetNumberOfCards(Card card)
 		{
-			return cardType == Card.CardType.YELLOW
+			return card == Card.YELLOW
 				? yellowCards % 2
 				: yellowCards / 2 + redCards;
 		}
@@ -165,7 +171,6 @@ namespace WordSoccer.Game.Players
 			this.game = game;
 			score = points = totalPoints = usedLetters = redCards = yellowCards = 0;
 
-			wordList.Clear();
 			cards.Clear();
 		}
 
@@ -181,7 +186,23 @@ namespace WordSoccer.Game.Players
 			usedLetters = 0;
 
 			// reset found words
-			wordList.Clear();
+			words.Clear();
+			WordListChanged();
+		}
+
+		public void SetListener(IPlayerListener listener)
+		{
+			this.listener = listener;
+		}
+
+		private void WordListChanged()
+		{
+			words.Sort();
+
+			if (listener != null)
+			{
+				listener.OnWordListChange();
+			}
 		}
 
 		private void AddUsedLetters(Word word)
@@ -197,6 +218,21 @@ namespace WordSoccer.Game.Players
 						break;
 					}
 				}
+			}
+		}
+
+		private class WordListener : Word.IWordListener
+		{
+			private readonly Player player;
+
+			public WordListener(Player player)
+			{
+				this.player = player;
+			}
+
+			public void OnStateChanged(Word word)
+			{
+				player.WordListChanged();
 			}
 		}
 	}

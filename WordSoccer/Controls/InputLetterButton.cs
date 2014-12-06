@@ -36,12 +36,12 @@ namespace WordSoccer.Controls
 			{
 				if (letter.IsUsed())
 				{
-					styleName = letter.GetCardType() == Card.CardType.YELLOW
+					styleName = letter.GetCard() == Card.YELLOW
 						? "DisabledLetterButtonWithYellowCardStyle" : "DisabledLetterButtonStyle";
 				}
 				else
 				{
-					styleName = letter.GetCardType() == Card.CardType.YELLOW
+					styleName = letter.GetCard() == Card.YELLOW
 						? "LetterButtonWithYellowCardStyle" : "LetterButtonStyle";
 				}
 			}

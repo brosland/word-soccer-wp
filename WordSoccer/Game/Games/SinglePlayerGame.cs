@@ -86,28 +86,21 @@ namespace WordSoccer.Game.Games
 
 		public override void EvaluateRound()
 		{
-			Dictionary<Word, Word> equalWords = new Dictionary<Word, Word>();
-
-			foreach (Word wordA in playerA.GetWordList())
+			foreach (Word wordA in playerA.GetWords())
 			{
 				if (wordA.GetState() != Word.WordState.VALID)
 				{
 					continue;
 				}
 
-				foreach (Word wordB in playerB.GetWordList())
+				foreach (Word wordB in playerB.GetWords())
 				{
 					if (wordB.GetState() == Word.WordState.VALID && wordA.Equals(wordB))
 					{
-						equalWords.Add(wordA, wordB);
+						wordA.SetState(Word.WordState.REMOVED);
+						wordB.SetState(Word.WordState.REMOVED);
 					}
 				}
-			}
-
-			foreach (Word wordA in equalWords.Keys)
-			{
-				wordA.SetState(Word.WordState.REMOVED);
-				equalWords[wordA].SetState(Word.WordState.REMOVED);
 			}
 
 			foreach (IGameListener listener in listeners)
@@ -121,22 +114,22 @@ namespace WordSoccer.Game.Games
 			// yellow card
 			if (playerA.GetCurrentLongestWord() < playerB.GetCurrentLongestWord())
 			{
-				playerA.AddCard(new Card(Card.CardType.YELLOW));
+				playerA.AddCard(Card.YELLOW);
 			}
 			else if (playerA.GetCurrentLongestWord() > playerB.GetCurrentLongestWord())
 			{
-				playerB.AddCard(new Card(Card.CardType.YELLOW));
+				playerB.AddCard(Card.YELLOW);
 			}
 
 			// red cards
 			if (playerA.HasUsedAllLetters())
 			{
-				playerB.AddCard(new Card(Card.CardType.RED));
+				playerB.AddCard(Card.RED);
 			}
 
 			if (playerB.HasUsedAllLetters())
 			{
-				playerA.AddCard(new Card(Card.CardType.RED));
+				playerA.AddCard(Card.RED);
 			}
 
 			// goal

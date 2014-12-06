@@ -1,22 +1,7 @@
 ﻿namespace WordSoccer.Game
 {
-	public class Card
+	public enum Card
 	{
-		private readonly CardType cardType;
-
-		public Card(CardType cardType)
-		{
-			this.cardType = cardType;
-		}
-
-		public CardType GetCardType()
-		{
-			return cardType;
-		}
-
-		public enum CardType
-		{
-			RED, YELLOW, NONE
-		}
+		RED, YELLOW, NONE
 	}
 }

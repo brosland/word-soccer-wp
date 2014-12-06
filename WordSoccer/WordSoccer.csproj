@@ -91,7 +91,6 @@
     <Compile Include="Converters\WordListTextStyleConverter.cs" />
     <Compile Include="Game\Dictionaries\HttpDictionary.cs" />
     <Compile Include="Game\ISinglePlayerDictionary.cs" />
-    <Compile Include="Game\WordList.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="GamePage.xaml.cs">

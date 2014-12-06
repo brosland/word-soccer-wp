@@ -32,7 +32,7 @@ namespace WordSoccer.Game.Players
 		{
 			base.OnStartRound(game);
 
-			int letterCount = BaseGame.LETTERS - GetNumberOfCards(Card.CardType.RED); // TODO
+			int letterCount = BaseGame.LETTERS - GetNumberOfCards(Card.RED);
 			char[] letters = game.GetCurrentRoundLetters().Substring(0, letterCount).ToCharArray();
 
 			ISinglePlayerDictionary dictionary = (ISinglePlayerDictionary) game.GetDictionary();

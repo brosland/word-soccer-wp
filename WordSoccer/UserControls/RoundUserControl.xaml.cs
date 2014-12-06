@@ -128,13 +128,13 @@ namespace WordSoccer.UserControls
 		{
 			String currentWord = GetSelectedWord();
 
-			if (currentWord.Length == 0|| currentWord.Contains(" "))
+			if (currentWord.Length == 0 || currentWord.Contains(" "))
 			{
 				submitButton.IsEnabled = false;
 				return;
 			}
 
-			foreach (Word word in game.GetPlayerA().GetWordList())
+			foreach (Word word in game.GetPlayerA().GetWords())
 			{
 				if (word.word.Equals(currentWord))
 				{
