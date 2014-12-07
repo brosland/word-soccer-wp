@@ -116,7 +116,7 @@ namespace WordSoccer.Game.Players
 
 		public bool HasUsedAllLetters()
 		{
-			return usedLetters >= BaseGame.LETTERS - GetNumberOfCards(Card.RED);
+			return usedLetters == BaseGame.LETTERS - GetNumberOfCards(Card.RED);
 		}
 
 		public int GetNumberOfUsedLetters()

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WordSoccer.Game.Dictionaries;
 
 namespace WordSoccer.Game.Games
 {
@@ -57,7 +56,7 @@ namespace WordSoccer.Game.Games
 			currentRoundNumber++;
 			currentRoundLetters = "";
 
-			for (int i = 0; i < 11; i++) //TODO
+			for (int i = 0; i < LETTERS; i++)
 			{
 				currentRoundLetters += generator.NextLetter();
 			}
@@ -111,25 +110,39 @@ namespace WordSoccer.Game.Games
 
 		public override void UpdateScore()
 		{
+			List<Card> playerACards = new List<Card>(2);
+			List<Card> playerBCards = new List<Card>(2);
+			
 			// yellow card
 			if (playerA.GetCurrentLongestWord() < playerB.GetCurrentLongestWord())
 			{
-				playerA.AddCard(Card.YELLOW);
+				playerACards.Add(Card.YELLOW);
 			}
 			else if (playerA.GetCurrentLongestWord() > playerB.GetCurrentLongestWord())
 			{
-				playerB.AddCard(Card.YELLOW);
+				playerBCards.Add(Card.YELLOW);
 			}
 
 			// red cards
 			if (playerA.HasUsedAllLetters())
 			{
-				playerB.AddCard(Card.RED);
+				playerBCards.Add(Card.RED);
 			}
 
 			if (playerB.HasUsedAllLetters())
 			{
-				playerA.AddCard(Card.RED);
+				playerACards.Add(Card.RED);
+			}
+
+			// adding cards to players
+			foreach (Card card in playerACards)
+			{
+				playerA.AddCard(card);
+			}
+
+			foreach (Card card in playerBCards)
+			{
+				playerB.AddCard(card);
 			}
 
 			// goal
